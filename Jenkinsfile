@@ -1,33 +1,25 @@
-pipeline {
-
-    agent any
+pipeline{
+  agent any
+    tools{
+    jdk 'myjava'
+    maven 'mymvn'
+    }
     stages{
-          stage('gitcheckoutstage'){
-               steps{
-                     git 'https://github.com/PMVVSV/mybuild.git'
-                    }
-       }
-
-         stage('build'){
-            steps{
-                sh 'mvn clean package'
-            }
-        }
-        stage('deploy'){
-
-            steps{
-
-                sh '/opt/deploy.sh'
-            }
-
-            }
-
+       stage('gitcheckoutstage'){
+         steps{
+             git clone https://github.com/PMVVSV/mybuild.git
          }
-         post {
-                    success{
-
-
-                   archiveArtifacts 'target/*.war'
-            }
-}
+       }
+        stage('Build'){
+          steps{
+            sh 'mvn clean package'
+          }
+        }
+        stage('Deploy'){
+          steps{
+            sh '/opt/deploy.sh'
+          }
+        }
+        
+    }
 }
