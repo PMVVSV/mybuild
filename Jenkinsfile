@@ -7,7 +7,7 @@ pipeline{
     stages{
        stage('gitcheckoutstage'){
          steps{
-             git clone https://github.com/PMVVSV/mybuild.git
+             git 'https://github.com/PMVVSV/mybuild.git'
          }
        }
         stage('Build'){
