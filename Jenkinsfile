@@ -16,8 +16,8 @@ pipeline {
         }
          stage('03 - Deploy') {
             environment {
-                TOMCAT_CREDS = credentials('99adb576-0d96-41a7-bff9-657e38b5f8f5')
-                TOMCAT_URL = credentials('http://tomcat:8081')
+                TOMCAT_CREDS = credentials('27d1be2b-1158-4466-86f6-6c3bbb24c59b')
+                TOMCAT_URL = credentials('http://20.119.42.134:8081/')
             }
             steps {
                 sh 'curl -s --upload-file ${WORKSPACE}/target/sparkjava-hello-world-1.0.war "http://${TOMCAT_CREDS_USR}:${TOMCAT_CREDS_PSW}@tomcat:8080/manager/text/deploy?path=/argentum-web&update=true"'
