@@ -15,7 +15,12 @@ pipeline{
             sh 'mvn clean package'
           }
         }
-        stage('Deploy'){
+       stage('Exit from container'){
+          steps{
+            sh 'exit'
+          }
+        }
+      stage('Deploy'){
           steps{
             sh '/opt/deploy.sh'
           }
