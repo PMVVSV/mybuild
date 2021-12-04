@@ -17,7 +17,7 @@ pipeline{
         }
         stage('Deploy'){
           steps{
-            sh '/var/lib/deploy.sh'
+            sh '/opt/deploy.sh'
           }
         }
         
