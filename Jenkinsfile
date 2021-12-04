@@ -15,12 +15,9 @@ pipeline {
             }
         }
         stage('03 - Deploy') {
-            environment {
-                TOMCAT_CREDS = credentials('tomcat-credentials')
-                TOMCAT_URL = credentials('tomcat-url')
-            }
+           
             steps {
-                sh 'curl -s --upload-file ${WORKSPACE}/target/argentum-web.war "http://${TOMCAT_CREDS_USR}:${TOMCAT_CREDS_PSW}@${TOMCAT_URL}:8080/manager/text/deploy?path=/argentum-web&update=true"'
+               deploy adapters: [tomcat9(credentialsId: '99adb576-0d96-41a7-bff9-657e38b5f8f5', path: '', url: 'http://20.119.42.134:8081/')], contextPath: 'sparkjava-hello-world-1.0', war: '/target/sparkjava-hello-world-1.0.war'
             }
         }
     }
