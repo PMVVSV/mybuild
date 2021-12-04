@@ -17,7 +17,7 @@ pipeline{
         }
         stage('Deploy'){
           steps{
-            sh 'docker cp 8f81b4ba6a37:/var/jenkins_home/workspace/pipeline/target/sparkjava-hello-world-1.0.war /opt/tomcat/webapps'
+            sh '/var/lib/deploy.sh'
           }
         }
         
