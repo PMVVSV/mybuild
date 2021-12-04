@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('01 - Git checkout'){
             steps {
-                git 'https://github.com/kidh0/argentum-web'
+                git 'https://github.com/PMVVSV/mybuild.git'
             }
         }
         stage('02 - Package') {
