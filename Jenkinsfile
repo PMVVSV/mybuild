@@ -1,25 +1,27 @@
-pipeline{
-  agent any
-    tools{
-    jdk 'myjava'
-    maven 'mymvn'
+pipeline {
+    agent any
+    tools {
+        maven 'MVN'
     }
-    stages{
-       stage('gitcheckoutstage'){
-         steps{
-             git 'https://github.com/PMVVSV/mybuild.git'
-         }
-       }
-        stage('Build'){
-          steps{
-            sh 'mvn clean package'
-          }
+    stages {
+        stage('01 - Git checkout'){
+            steps {
+                git 'https://github.com/kidh0/argentum-web'
+            }
         }
-      stage('Deploy'){
-          steps{
-            sh '/opt/deploy.sh'
-          }
+        stage('02 - Package') {
+            steps {
+                sh 'mvn package'
+            }
         }
-        
+        stage('03 - Deploy') {
+            environment {
+                TOMCAT_CREDS = credentials('tomcat-credentials')
+                TOMCAT_URL = credentials('tomcat-url')
+            }
+            steps {
+                sh 'curl -s --upload-file ${WORKSPACE}/target/argentum-web.war "http://${TOMCAT_CREDS_USR}:${TOMCAT_CREDS_PSW}@${TOMCAT_URL}:8080/manager/text/deploy?path=/argentum-web&update=true"'
+            }
+        }
     }
 }
