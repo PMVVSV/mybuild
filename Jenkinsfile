@@ -16,7 +16,7 @@ pipeline {
         }
          stage('03 - Deploy') {
             environment {
-                TOMCAT_CREDS = credentials('27d1be2b-1158-4466-86f6-6c3bbb24c59b')
+                TOMCAT_CREDS = credentials('cd17d72e-7417-4b5d-8eaa-d87df4a96609')
                 TOMCAT_URL = credentials('http://20.119.42.134:8081/')
             }
             steps {
