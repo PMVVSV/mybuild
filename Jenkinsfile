@@ -11,7 +11,7 @@ pipeline {
         }
         stage('02 - Test') {
             steps {
-                sh 'mvn clean test -Dtest=xxxxTest'
+                sh 'mvn clean test'
             }
         }
         stage('03 - Package') {
