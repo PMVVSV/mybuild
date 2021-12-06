@@ -16,7 +16,7 @@ pipeline {
         }
          stage('03 - Deploy') {
              steps{
-           deploy adapters: [tomcat9(credentialsId: 'cd17d72e-7417-4b5d-8eaa-d87df4a96609', path: '', url: 'http://20.119.42.134:8081/')], contextPath: 'java-war', war: '**/*.war'
+           deploy adapters: [tomcat9(credentialsId: '5ca39a88-cd22-4dc5-92fe-19826bbcd480', path: '', url: 'http://20.119.42.134:8081/')], contextPath: 'sparkjava-hello-world-1.0/hello', war: '**/*.war'
             }
          }
     }
